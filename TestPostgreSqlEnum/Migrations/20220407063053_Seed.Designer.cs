@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TestPostgreSqlEnum.Migrations
 {
     [DbContext(typeof(MedServiceDbContext))]
-    [Migration("20220407060101_Initial")]
-    partial class Initial
+    [Migration("20220407063053_Seed")]
+    partial class Seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace TestPostgreSqlEnum.Migrations
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "sex_type", new[] { "male", "female" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "public", "sex_type", new[] { "male", "female" });
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("MedService.API.Database.Entities.Data.Client", b =>

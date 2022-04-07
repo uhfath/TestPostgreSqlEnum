@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 {
-	await using var context = new MedService.API.Database.MedServiceDbContext();
+	//await using var context = new MedService.API.Database.MedServiceDbContext();
 
 	//await context.Database.EnsureDeletedAsync();
 	//await context.Database.MigrateAsync();
@@ -10,19 +10,19 @@
 	//await connection.OpenAsync();
 	//connection.ReloadTypes();
 
-	context.Clients.Add(new()
-	{
-		Name = "test_female",
-		SexType = MedService.API.Database.Entities.Enums.SexType.Female
-	});
+	//context.Clients.Add(new()
+	//{
+	//	Name = "test_female",
+	//	SexType = MedService.API.Database.Entities.Enums.SexType.Female
+	//});
 
-	context.Clients.Add(new()
-	{
-		Name = "test_male",
-		SexType = MedService.API.Database.Entities.Enums.SexType.Male
-	});
+	//context.Clients.Add(new()
+	//{
+	//	Name = "test_male",
+	//	SexType = MedService.API.Database.Entities.Enums.SexType.Male
+	//});
 
-	await context.SaveChangesAsync();
+	//await context.SaveChangesAsync();
 }
 
 {

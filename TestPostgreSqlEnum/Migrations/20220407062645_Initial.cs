@@ -11,7 +11,7 @@ namespace TestPostgreSqlEnum.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("Npgsql:Enum:sex_type", "male,female");
+                .Annotation("Npgsql:Enum:public.sex_type", "male,female");
 
             migrationBuilder.CreateTable(
                 name: "Clients",

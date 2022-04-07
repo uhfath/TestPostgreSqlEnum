@@ -22,8 +22,10 @@ public class MedServiceDbContext : DbContext
 
 	private static void MapTypes(ModelBuilder modelBuilder)
 	{
+		var nameTranslator = NpgsqlConnection.GlobalTypeMapper.DefaultNameTranslator;
+
 		modelBuilder
-			.HasPostgresEnum<SexType>()
+			.HasPostgresEnum<SexType>(DatabaseSchema, nameTranslator.TranslateTypeName(nameof(SexType)), nameTranslator);
 		;
 	}
 
