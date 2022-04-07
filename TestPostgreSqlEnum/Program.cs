@@ -2,8 +2,13 @@
 
 {
 	await using var context = new MedService.API.Database.MedServiceDbContext();
-	await context.Database.EnsureDeletedAsync();
-	await context.Database.EnsureCreatedAsync();
+
+	//await context.Database.EnsureDeletedAsync();
+	//await context.Database.MigrateAsync();
+
+	//await using var connection = (Npgsql.NpgsqlConnection)context.Database.GetDbConnection();
+	//await connection.OpenAsync();
+	//connection.ReloadTypes();
 
 	context.Clients.Add(new()
 	{
@@ -24,5 +29,4 @@
 	await using var context = new MedService.API.Database.MedServiceDbContext();
 	var clients = await context.Clients.ToListAsync();
 	clients.ForEach(c => Console.WriteLine("Id: {0}, Name: {1}, Sex: {2}", c.Id, c.Name, c.SexType));
-	Console.ReadLine();
 }
