@@ -43,5 +43,38 @@ namespace TestPostgreSqlEnum
 
             return migrationBuilder;
 		}
+
+		public static MigrationBuilder InsertTemps(this MigrationBuilder migrationBuilder)
+		{
+            migrationBuilder.InsertData(
+                "Temps",
+                new[]
+                {
+                    nameof(TempModel.Id),
+                    nameof(TempModel.TempEnum),
+                },
+                new object[]
+                {
+                    1,
+                    TempEnumType.Value1,
+                },
+                schema: "temp");
+
+            migrationBuilder.InsertData(
+                "Temps",
+                new[]
+                {
+                    nameof(TempModel.Id),
+                    nameof(TempModel.TempEnum),
+                },
+                new object[]
+                {
+                    2,
+                    TempEnumType.Value2,
+                },
+                schema: "temp");
+
+            return migrationBuilder;
+		}
 	}
 }

@@ -3,27 +3,28 @@ using Npgsql;
 using MedService.API.Database.Entities.Enums;
 using MedService.API.Database.Entities.Data;
 using Microsoft.Extensions.Logging;
+using TestPostgreSqlEnum;
 
 namespace MedService.API.Database;
 
-public class MedServiceDbContext : DbContext
+public class TempDbContext : DbContext
 {
-	public const string DatabaseSchema = "public";
+	public const string DatabaseSchema = "temp";
 
-	public DbSet<Client> Clients { get; protected set; }
+	public DbSet<TempModel> Temps { get; protected set; }
 
 	private static string TranslateTypeName<T>() => NameTranslator.TranslateTypeName(typeof(T).Name);
 	private static readonly INpgsqlNameTranslator NameTranslator = NpgsqlConnection.GlobalTypeMapper.DefaultNameTranslator;
 
-	static MedServiceDbContext()
+	static TempDbContext()
 	{
-		NpgsqlConnection.GlobalTypeMapper.MapEnum<SexType>($"{DatabaseSchema}.{TranslateTypeName<SexType>()}", NameTranslator);
+		NpgsqlConnection.GlobalTypeMapper.MapEnum<TempEnumType>($"{DatabaseSchema}.{TranslateTypeName<TempEnumType>()}", NameTranslator);
 	}
 
 	private static void MapTypes(ModelBuilder modelBuilder)
 	{
 		modelBuilder
-			.HasPostgresEnum<SexType>(DatabaseSchema, TranslateTypeName<SexType>(), NameTranslator)
+			.HasPostgresEnum<TempEnumType>(DatabaseSchema, TranslateTypeName<TempEnumType>(), NameTranslator)
 		;
 	}
 
@@ -32,6 +33,7 @@ public class MedServiceDbContext : DbContext
 		base.OnModelCreating(modelBuilder);
 
 		MapTypes(modelBuilder);
+		modelBuilder.HasDefaultSchema(DatabaseSchema);
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
@@ -41,7 +43,7 @@ public class MedServiceDbContext : DbContext
 			.EnableSensitiveDataLogging()
 		;
 
-	public MedServiceDbContext()
+	public TempDbContext()
 	{
 	}
 }
